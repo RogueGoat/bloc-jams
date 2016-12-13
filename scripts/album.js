@@ -78,14 +78,17 @@ var setCurrentAlbum = function(album) {
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
      
-     var albumNames = [albumPicasso, albumMarconi, albumAlestorm];
+     var albums = [albumPicasso, albumMarconi, albumAlestorm];
      var index = 1;
      albumImage.addEventListener("click", function(event) {
-         setCurrentAlbum(album[index]);
+         console.log("You licked!");
+         setCurrentAlbum(albums[index]);
          index++;
          if (index == albums.length) {
              index = 0;
          }
          
      });
+     
  };
+console.log(albumImage);
