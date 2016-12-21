@@ -74,7 +74,7 @@ var findParentByClassName = function(element, targetClass) {
 
 function getSongItem(element){
    switch(element.className){
-//        debugger;
+//        the problem was no second argument
        case 'album-song-button':
        case 'ion-play':
        case 'ion-pause':
