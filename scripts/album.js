@@ -253,6 +253,18 @@ var updatePlayerBarSong = function() {
 
 };
 
+// assignment work here
+var setCurrentTimeInPlayerBar = function(currentTime){
+    $('.current-time')
+};
+
+var setTotalTimeInPlayerBar = function(){
+    
+};
+var filterTimeCode = function(){
+    
+};
+// assignment work end
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
