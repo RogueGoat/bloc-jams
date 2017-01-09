@@ -21,16 +21,34 @@ var  setSong = function(songNumber){
          currentSoundFile.setVolume(volume);
      }
  };
+// assignment work here
+var setCurrentTimeInPlayerBar = function(currentTime){
+    $('.current-time').text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime){
+    $('.total-time').text(filterTimeCode(totalTime));
+};
 
 var getSongNumberCell = function(number){
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
+
+var filterTimeCode = function(timeInSeconds) {
+     var minutes = Math.floor(parseFloat(timeInSeconds) / 60);
+     var seconds = Math.floor(parseFloat(timeInSeconds) % 60);
+     if (seconds < 10){
+         seconds = "0" + seconds;
+     }
+     return minutes + ":" + seconds;
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + ' <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
         ;
  
@@ -123,6 +141,7 @@ var setCurrentAlbum = function(album) {
              var $seekBar = $('.seek-control .seek-bar');
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             setCurrentTimeInPlayerBar(this.getTime());
          });
      }
  };
@@ -250,21 +269,10 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 
 };
 
-// assignment work here
-var setCurrentTimeInPlayerBar = function(currentTime){
-    $('.current-time')
-};
-
-var setTotalTimeInPlayerBar = function(){
-    
-};
-var filterTimeCode = function(){
-    
-};
-// assignment work end
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
