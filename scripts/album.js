@@ -1,6 +1,6 @@
 var  setSong = function(songNumber){
     if (currentSoundFile) {
-    currentSoundFile.stop();
+        currentSoundFile.stop();
      }
     currentlyPlayingSongNumber = parseInt(songNumber);
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
@@ -15,14 +15,14 @@ var  setSong = function(songNumber){
      if (currentSoundFile) {
          currentSoundFile.setTime(time);
      }
- }
+ };
  var setVolume = function(volume) {
      if (currentSoundFile) {
          currentSoundFile.setVolume(volume);
      }
  };
 // assignment work here
-var setCurrentTimeInPlayerBar = function(currentTime){
+var setCurrentTimeInPlayerBar = function(currentTime) {
     $('.current-time').text(filterTimeCode(currentTime));
 };
 
@@ -42,15 +42,13 @@ var filterTimeCode = function(timeInSeconds) {
      }
      return minutes + ":" + seconds;
  };
-
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
       + ' <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
-      + '</tr>'
-        ;
+      + '</tr>';
  
     var $row = $(template);
      
@@ -58,13 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
         var songNumber = parseInt($(this).attr('data-song-number'));
         if (currentlyPlayingSongNumber !== null) {
             var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-            
             currentlyPlayingCell.html(currentlyPlayingSongNumber);
         }
         if (currentlyPlayingSongNumber !== songNumber) {
             setSong(songNumber);
             currentSoundFile.play();
-            updatePlayerBarSong();
+            updateSeekBarWhileSongPlays();
             
             var $volumeFill = $('.volume .fill');
             var $volumeThumb = $('.volume .thumb');
@@ -73,7 +70,8 @@ var createSongRow = function(songNumber, songName, songLength) {
             
             $(this).html(pauseButtonTemplate);
 
-        } else if (currentlyPlayingSongNumber === songNumber) {            if (currentSoundFile.isPaused()) {
+        } else if (currentlyPlayingSongNumber === songNumber) {            
+            if (currentSoundFile.isPaused()) {
              $(this).html(pauseButtonTemplate);
 $('.main-controls .play-pause').html(playerBarPauseButton);
     currentSoundFile.play();
